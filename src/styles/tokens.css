@@ -1,0 +1,100 @@
+/* ETTP dizayn tizimi — rasmiy-zamonaviy tibbiy uslub */
+:root {
+  --font-head: 'Manrope', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+
+  --brand-900: #062a43;
+  --brand-800: #0a3a5c;
+  --brand-700: #0b4d78;
+  --brand-600: #0b5c8c;
+  --brand-500: #1170a8;
+  --brand-400: #3b8fc4;
+  --brand-100: #dcecf7;
+  --brand-50: #eef6fc;
+  --teal-600: #0b8a8a;
+  --teal-500: #0fa3a3;
+  --teal-400: #2ec4bd;
+  --teal-100: #d5f3f1;
+  --teal-50: #ecfaf9;
+  --amber-500: #e8a33d;
+
+  --bg: #f3f6fa;
+  --bg-2: #eaf0f6;
+  --surface: #ffffff;
+  --surface-2: #f8fafc;
+  --surface-3: #f1f5f9;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --text: #0f1e2e;
+  --text-2: #475569;
+  --text-3: #64748b;
+  --text-inv: #ffffff;
+  --primary: var(--brand-600);
+  --primary-hover: var(--brand-700);
+  --primary-soft: var(--brand-50);
+  --primary-text: var(--brand-700);
+  --accent: var(--teal-500);
+  --accent-soft: var(--teal-50);
+
+  --ok: #12805c;
+  --ok-soft: #e6f6ef;
+  --ok-border: #a7e0c7;
+  --warn: #a8640f;
+  --warn-soft: #fff5e3;
+  --warn-border: #f5d39b;
+  --err: #b42318;
+  --err-soft: #fdecea;
+  --err-border: #f6b8b1;
+  --info: #1d5fd1;
+  --info-soft: #eaf1fe;
+  --info-border: #bcd3fb;
+  --muted-soft: #eef2f6;
+
+  --side-bg: linear-gradient(180deg, #062a43 0%, #08324f 55%, #0a3d5c 100%);
+  --side-text: #c9dbe9;
+  --side-text-2: #8fb0c8;
+  --side-active: rgba(46, 196, 189, 0.16);
+  --side-border: rgba(255, 255, 255, 0.08);
+
+  --hero: linear-gradient(125deg, #0a3a5c 0%, #0b5c8c 48%, #0f9a9a 100%);
+
+  --r-sm: 8px;
+  --r: 12px;
+  --r-lg: 16px;
+  --r-xl: 22px;
+  --sh-1: 0 1px 2px rgba(15, 30, 46, 0.06), 0 1px 1px rgba(15, 30, 46, 0.03);
+  --sh-2: 0 1px 2px rgba(15, 30, 46, 0.05), 0 8px 24px rgba(15, 30, 46, 0.06);
+  --sh-3: 0 4px 10px rgba(15, 30, 46, 0.06), 0 22px 48px rgba(15, 30, 46, 0.12);
+  --ring: 0 0 0 3px rgba(17, 112, 168, 0.25);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --side-w: 264px;
+  --top-h: 64px;
+
+  --chart-1: #0b5c8c;
+  --chart-2: #0fa3a3;
+  --chart-3: #e8a33d;
+  --chart-4: #7c5cc4;
+  --chart-5: #d1495b;
+  --chart-grid: #e6ecf2;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #0a1420; --bg-2: #0e1a28; --surface: #111e2d; --surface-2: #142334; --surface-3: #18293c; --border: #1f3348; --border-strong: #2b4560;
+    --text: #e6eef6; --text-2: #a9bccd; --text-3: #7f97ad; --primary: #3b9ad6; --primary-hover: #5aafe4; --primary-soft: rgba(59, 154, 214, 0.14); --primary-text: #7cc1ee;
+    --accent-soft: rgba(15, 163, 163, 0.16); --ok: #3ccf91; --ok-soft: rgba(60, 207, 145, 0.12); --ok-border: rgba(60, 207, 145, 0.35); --warn: #f2b65a; --warn-soft: rgba(242, 182, 90, 0.12); --warn-border: rgba(242, 182, 90, 0.35);
+    --err: #ff7b6e; --err-soft: rgba(255, 123, 110, 0.12); --err-border: rgba(255, 123, 110, 0.35); --info: #7aa7ff; --info-soft: rgba(122, 167, 255, 0.12); --info-border: rgba(122, 167, 255, 0.35); --muted-soft: #18293c;
+    --side-bg: linear-gradient(180deg, #05121e 0%, #071a2a 100%); --sh-2: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35); --sh-3: 0 22px 48px rgba(0,0,0,.5); --chart-grid: #1f3348; --chart-1: #3b9ad6;
+    color-scheme: dark;
+  }
+}
+:root[data-theme='dark'] {
+  --bg: #0a1420; --bg-2: #0e1a28; --surface: #111e2d; --surface-2: #142334; --surface-3: #18293c; --border: #1f3348; --border-strong: #2b4560;
+  --text: #e6eef6; --text-2: #a9bccd; --text-3: #7f97ad; --primary: #3b9ad6; --primary-hover: #5aafe4; --primary-soft: rgba(59, 154, 214, 0.14); --primary-text: #7cc1ee;
+  --accent-soft: rgba(15, 163, 163, 0.16); --ok: #3ccf91; --ok-soft: rgba(60, 207, 145, 0.12); --ok-border: rgba(60, 207, 145, 0.35); --warn: #f2b65a; --warn-soft: rgba(242, 182, 90, 0.12); --warn-border: rgba(242, 182, 90, 0.35);
+  --err: #ff7b6e; --err-soft: rgba(255, 123, 110, 0.12); --err-border: rgba(255, 123, 110, 0.35); --info: #7aa7ff; --info-soft: rgba(122, 167, 255, 0.12); --info-border: rgba(122, 167, 255, 0.35); --muted-soft: #18293c;
+  --side-bg: linear-gradient(180deg, #05121e 0%, #071a2a 100%); --sh-2: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35); --sh-3: 0 22px 48px rgba(0,0,0,.5); --chart-grid: #1f3348; --chart-1: #3b9ad6;
+  color-scheme: dark;
+}
