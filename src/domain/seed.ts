@@ -5,7 +5,7 @@ import type * as T from './types'
 import { HUDUDLAR, MUTAXASSISLIKLAR, KONIKMALAR, BAHOLASH_MEZONLARI } from './malumotnoma'
 import { fauxHash } from './amallar'
 
-export const DB_VERSIYA = 3
+export const DB_VERSIYA = 4
 export const DEMO_BUGUN = '2026-11-13'
 
 function rngYarat(seed: number) {
@@ -386,6 +386,16 @@ export function seedYarat(): DB {
     const o = otganOqimlar.find((x) => x.boshlanish.startsWith('2026') && db.versiyalar.find((v) => v.id === x.versiyaId)!.nomi === nomi)
     if (o && !db.yozilishlar.some((y) => y.personId === dilnoza.id && y.oqimId === o.id)) natijaYoz(dilnoza, o, [88, 94, 79][k], o.tugash > '2026-11-10' ? '2026-10-20' : o.tugash, { davomat: true })
   })
+  // Bekor qilingan sertifikat namunasi (QR-tekshiruvda «Bekor qilingan» — 10-qabul sinovi)
+  const bekorS = db.sertifikatlar.find((s) => s.personId !== anvar.id && s.personId !== dilnoza.id && s.sana.startsWith('2026') && !s.kochirilgan)
+  const bekorJ = bekorS && db.jurnal.find((j) => j.sertifikatId === bekorS.id)
+  if (bekorS && bekorJ) {
+    bekorS.holat = 'bekor_qilingan'
+    bekorS.sabab = 'Tinglovchi mashgʻulotlarda qatnashmagani aniqlandi (UKR markazi qarori №UKR-2026/219, 2026-10-30)'
+    db.seq++
+    db.jurnal.push({ ...bekorJ, id: id('K'), seq: db.seq, miqdor: -bekorJ.miqdor, manba: 'tuzatish', manbaId: 'TZ-0000', sana: vaqt('2026-10-30', 15), asos: 'Bekor qilish: qaror №UKR-2026/219', bekorQilinganId: bekorJ.id, sertifikatId: undefined, yaratuvchi: 'Abdullayev Rustam Erkinovich' })
+    db.tuzatishlar.push({ id: 'TZ-0000', yozuvId: bekorJ.id, personId: bekorJ.personId, turi: 'bekor', sabab: 'Tinglovchi mashgʻulotlarda qatnashmagan', hujjat: 'Qaror №UKR-2026/219', taklifQilgan: 'U-MARKAZ1', holat: 'tasdiqlandi', tasdiqlovchi: 'U-MARKAZ2', sana: vaqt('2026-10-29') })
+  }
   // 2025 dan oʻtkazilgan kredit
   db.seq++
   db.jurnal.push({ id: id('K'), seq: db.seq, personId: anvar.id, yil: 2026, miqdor: 4, kursTuri: 'tanlov', yonalish: 'nazariy', tadbirTuri: 'kurs', manba: 'otkazish', manbaId: 'yil-2025', nomi: '2025-yildan oʻtkazilgan kredit', providerNomi: '—', qoidaId: 'Q-2025', sana: '2026-01-01T00:10:00+05:00', asos: 'Qoida 0.9: ortiqcha kreditning 20% igacha', yaratuvchi: 'Kredit xizmati' })

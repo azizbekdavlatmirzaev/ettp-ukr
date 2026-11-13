@@ -49,26 +49,31 @@ export function Molekula({ className, opacity = 0.18 }: { className?: string; op
   )
 }
 
-const GURUH_RASM: Record<string, string> = {
-  Terapevtik: 'kardio',
-  Pediatrik: 'pediatriya',
-  Jarrohlik: 'jarrohlik',
-  Shoshilinch: 'shoshilinch',
-  Birlamchi: 'birlamchi',
-  Diagnostik: 'diagnostika',
-  Stomatologik: 'stomatologiya',
-  Farmatsevtik: 'farmatsiya',
-  'Oʻrta tibbiy': 'hamshira',
+const GURUH_RASM: Record<string, string[]> = {
+  Terapevtik: ['kardio', 'stetoskop', 'shifokor', 'portret'],
+  Pediatrik: ['pediatriya', 'birlamchi'],
+  Jarrohlik: ['jarrohlik', 'jamoa'],
+  Shoshilinch: ['shoshilinch', 'jamoa'],
+  Birlamchi: ['birlamchi', 'pediatriya', 'stetoskop'],
+  Diagnostik: ['diagnostika', 'lab2'],
+  Stomatologik: ['stomatologiya'],
+  Farmatsevtik: ['farmatsiya', 'lab2'],
+  'Oʻrta tibbiy': ['hamshira', 'laboratoriya', 'mobil'],
 }
+
+const xesh = (s: string) => Array.from(s).reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7)
 
 export function kursRasmi(v: Pick<DasturVersiya, 'mutaxassisliklar' | 'shakl' | 'tadbirTuri' | 'nomi' | 'tinglovchi'>) {
   const n = v.nomi.toLowerCase()
   if (n.includes('insult') || n.includes('nevro')) return IMG('nevrologiya')
   if (n.includes('laborator')) return IMG('laboratoriya')
   if (n.includes('kt ') || n.includes('rentgen') || n.includes('ultratovush') || n.includes('ultrasound') || n.includes('exokg')) return IMG('diagnostika')
-  if (v.tadbirTuri === 'simulyatsiya') return IMG(n.includes('pals') || n.includes('chaqaloq') ? 'pediatriya' : 'shoshilinch')
-  if (v.shakl === 'onlayn' && !v.mutaxassisliklar.length) return IMG('onlayn')
+  if (v.tadbirTuri === 'konferensiya') return IMG('hero')
+  if (v.tadbirTuri === 'mustaqil') return IMG('mobil')
+  if (v.tadbirTuri === 'simulyatsiya') return IMG(n.includes('pals') || n.includes('chaqaloq') ? 'pediatriya' : n.includes('laparo') ? 'jarrohlik' : 'shoshilinch')
+  if (v.shakl === 'onlayn') return IMG(xesh(n) % 2 ? 'onlayn' : 'mobil')
   const m = MUTAXASSISLIKLAR.find((x) => x.id === v.mutaxassisliklar[0])
   if (!m) return IMG(v.tinglovchi === 'orta' ? 'hamshira' : 'onlayn')
-  return IMG(GURUH_RASM[m.guruh] ?? 'stetoskop')
+  const pool = GURUH_RASM[m.guruh] ?? ['stetoskop']
+  return IMG(pool[xesh(n) % pool.length])
 }
