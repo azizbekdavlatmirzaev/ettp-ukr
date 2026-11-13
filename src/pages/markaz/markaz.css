@@ -1,0 +1,46 @@
+/* UKR markazi kabineti — faqat shu papka sahifalari uchun qoʻshimcha uslublar */
+.mk-kanban { display: grid; grid-template-columns: repeat(6, minmax(210px, 1fr)); gap: 12px; overflow-x: auto; padding-bottom: 8px; }
+.mk-col { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 10px; min-height: 220px; display: flex; flex-direction: column; gap: 8px; }
+.mk-col-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-weight: 700; font-size: 12.5px; padding: 2px 4px 6px; color: var(--text-2); text-transform: uppercase; letter-spacing: .03em; }
+.mk-col-h .n { min-width: 22px; height: 22px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); display: grid; place-items: center; font-size: 11.5px; color: var(--text); }
+.mk-kart { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; box-shadow: var(--sh-1); cursor: pointer; transition: border-color .2s, box-shadow .2s; }
+.mk-kart:hover { border-color: var(--brand-400); box-shadow: var(--sh-2); }
+.mk-kart.late { border-left: 3px solid var(--err); }
+.mk-kart .t { font-weight: 700; font-size: 13px; line-height: 1.35; margin: 4px 0; }
+.mk-q { display: flex; gap: 14px; align-items: flex-start; padding: 16px; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); cursor: pointer; transition: border-color .2s, box-shadow .2s, transform .2s var(--ease); height: 100%; }
+.mk-q:hover { border-color: var(--brand-400); box-shadow: var(--sh-2); transform: translateY(-2px); }
+.mk-q.urgent { border-color: var(--err-border); background: linear-gradient(180deg, var(--err-soft), var(--surface) 70%); }
+.mk-q.zero { opacity: .72; }
+.mk-q .ic { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--primary-soft); color: var(--primary); flex: none; }
+.mk-q .ic svg { width: 19px; height: 19px; }
+.mk-q.urgent .ic { background: var(--err-soft); color: var(--err); }
+.mk-q .n { font: 800 28px/1 var(--font-head); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.mk-thread { display: flex; flex-direction: column; gap: 10px; }
+.mk-msg { max-width: 88%; padding: 10px 12px; border-radius: 14px; background: var(--surface-3); font-size: 13px; }
+.mk-msg.biz { align-self: flex-end; background: var(--primary-soft); border: 1px solid var(--brand-100); }
+.mk-msg .k { font-size: 11.5px; color: var(--text-3); margin-bottom: 3px; }
+.mk-lock { display: flex; gap: 8px; align-items: flex-start; font-size: 12px; color: var(--text-3); background: var(--surface-3); border-radius: 10px; padding: 8px 10px; }
+.mk-lock svg { width: 14px; height: 14px; flex: none; margin-top: 2px; }
+.mk-sec { margin-top: 18px; }
+.mk-sec > h3 { font-size: 13.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.mk-sec > h3 svg { width: 16px; height: 16px; color: var(--primary); }
+.mk-doc { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px dashed var(--border); font-size: 13px; }
+.mk-doc:last-child { border-bottom: none; }
+.mk-doc .ok { color: var(--ok); } .mk-doc .no { color: var(--err); }
+.mk-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.mk-score { display: grid; grid-template-columns: minmax(0, 1fr) repeat(var(--n, 2), 64px); gap: 6px 10px; font-size: 12.5px; align-items: center; }
+.mk-score .h { font-weight: 700; color: var(--text-2); font-size: 11.5px; }
+.mk-tline { position: relative; display: flex; gap: 0; overflow-x: auto; padding: 12px 0 4px; }
+.mk-tline .v { flex: 1 0 170px; position: relative; padding: 18px 12px 0; border-top: 3px solid var(--border); cursor: pointer; }
+.mk-tline .v::before { content: ''; position: absolute; top: -8px; left: 12px; width: 13px; height: 13px; border-radius: 50%; background: var(--surface); border: 3px solid var(--border-strong); }
+.mk-tline .v.amalda { border-top-color: var(--ok); } .mk-tline .v.amalda::before { border-color: var(--ok); background: var(--ok-soft); }
+.mk-tline .v.tasdiqlangan { border-top-color: var(--teal-500); } .mk-tline .v.tasdiqlangan::before { border-color: var(--teal-500); }
+.mk-tline .v.korib_chiqishda { border-top-color: var(--warn); } .mk-tline .v.korib_chiqishda::before { border-color: var(--warn); }
+.mk-tline .v.on { background: var(--primary-soft); border-radius: 0 0 12px 12px; }
+.mk-big { font: 800 40px/1 var(--font-head); letter-spacing: -.02em; }
+tr.mk-urgent td { background: var(--err-soft); }
+@media (max-width: 640px) {
+  .mk-kanban { grid-template-columns: repeat(6, 82vw); scroll-snap-type: x mandatory; }
+  .mk-col { scroll-snap-align: start; }
+  .mk-q { padding: 12px; }
+}

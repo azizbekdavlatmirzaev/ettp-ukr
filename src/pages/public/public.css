@@ -1,0 +1,104 @@
+/* ETTP ochiq sahifalar — umumiy qism (header, footer, band, reveal) */
+.pb { min-height: 100vh; display: flex; flex-direction: column; background: var(--bg); overflow-x: clip; }
+.pb-wrap { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+@media (max-width: 640px) { .pb-wrap { padding: 0 16px; } }
+.pb main { flex: 1; }
+
+/* ───── Header ───── */
+.pb-top { position: fixed; inset: 0 0 auto 0; z-index: 50; height: 68px; transition: background .35s var(--ease), box-shadow .35s, border-color .35s; border-bottom: 1px solid transparent; color: #fff; }
+.pb-top .pb-wrap { height: 100%; display: flex; align-items: center; gap: 18px; }
+.pb-top.qattiq { background: color-mix(in srgb, var(--surface) 86%, transparent); backdrop-filter: saturate(1.5) blur(16px); -webkit-backdrop-filter: saturate(1.5) blur(16px); border-bottom-color: var(--border); box-shadow: 0 6px 24px rgba(15,30,46,.06); color: var(--text); }
+.pb-brand { display: flex; align-items: center; gap: 10px; color: inherit !important; text-decoration: none !important; flex: none; }
+.pb-brand .t1 { font: 800 17px/1 var(--font-head); letter-spacing: .02em; }
+.pb-brand .t2 { font-size: 11px; opacity: .72; line-height: 1.2; margin-top: 3px; }
+.pb-nav { display: flex; align-items: center; gap: 2px; margin-left: auto; }
+.pb-nav a { position: relative; padding: 8px 12px; border-radius: 10px; font-weight: 600; font-size: 13.5px; color: inherit; opacity: .86; text-decoration: none !important; transition: opacity .2s, background .2s; white-space: nowrap; }
+.pb-nav a:hover { opacity: 1; background: rgba(127,160,190,.14); }
+.pb-nav a.on { opacity: 1; }
+.pb-nav a .ul { position: absolute; left: 12px; right: 12px; bottom: 2px; height: 2px; border-radius: 2px; background: var(--teal-400); }
+.pb-act { display: flex; align-items: center; gap: 8px; }
+.pb-ib { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.08); color: inherit; cursor: pointer; transition: all .2s var(--ease); }
+.pb-ib:hover { transform: translateY(-1px); background: rgba(255,255,255,.16); }
+.pb-ib svg { width: 18px; height: 18px; }
+.pb-top.qattiq .pb-ib { border-color: var(--border); background: var(--surface); }
+.pb-top.qattiq .pb-ib:hover { color: var(--primary); }
+.pb-burger { display: none; }
+@media (max-width: 1080px) {
+  .pb-nav { display: none; }
+  .pb-burger { display: grid; }
+  .pb-act { margin-left: auto; }
+}
+@media (max-width: 520px) { .pb-act .pb-kir span { display: none; } .pb-brand .t2 { display: none; } }
+.pb-mob { position: fixed; inset: 68px 0 auto 0; z-index: 49; background: var(--surface); border-bottom: 1px solid var(--border); box-shadow: var(--sh-3); padding: 10px 16px 18px; color: var(--text); }
+.pb-mob a { display: flex; align-items: center; gap: 12px; padding: 12px 10px; border-radius: 12px; color: var(--text); font-weight: 600; text-decoration: none !important; }
+.pb-mob a svg { width: 18px; height: 18px; color: var(--primary); }
+.pb-mob a.on, .pb-mob a:hover { background: var(--primary-soft); }
+
+/* ───── Sahifa bandi (ichki sahifalar uchun) ───── */
+.pb-band { position: relative; overflow: hidden; background: var(--hero); color: #fff; padding: 112px 0 64px; }
+.pb-band h1 { color: #fff; font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -.025em; line-height: 1.12; max-width: 820px; }
+.pb-band .lead { margin-top: 12px; font-size: 16px; line-height: 1.6; color: rgba(255,255,255,.82); max-width: 720px; }
+.pb-band .crumb { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: rgba(255,255,255,.75); margin-bottom: 14px; padding: 4px 12px 4px 6px; border-radius: 99px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); }
+.pb-band .crumb i { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.16); }
+.pb-band .crumb svg { width: 13px; height: 13px; }
+.pb-band .src { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; font-size: 12.5px; color: rgba(255,255,255,.8); }
+.pb-band .src .live { width: 7px; height: 7px; border-radius: 50%; background: #5ff0c2; animation: pulse 2.2s infinite; }
+.pb-band .pb-ekg { position: absolute; left: 0; right: 0; bottom: 18px; height: 56px; opacity: .3; pointer-events: none; }
+.pb-band .mol { position: absolute; right: -40px; top: 60px; width: 420px; color: #fff; pointer-events: none; }
+.pb-band .dots { position: absolute; inset: 0; opacity: .12; pointer-events: none; background-image: radial-gradient(circle at 1px 1px, #fff 1px, transparent 0); background-size: 24px 24px; mask-image: linear-gradient(100deg, transparent 30%, #000 85%); }
+.pb-band .blob { position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none; }
+.pb-band .blob.a { width: 420px; height: 420px; right: -120px; top: -160px; background: rgba(46,196,189,.35); }
+.pb-band .blob.b { width: 360px; height: 360px; left: -140px; bottom: -200px; background: rgba(59,143,196,.35); }
+.pb-band > .pb-wrap { position: relative; z-index: 1; }
+.pb-ekg path { stroke-dasharray: 1400; stroke-dashoffset: 1400; animation: ekg 5s var(--ease) infinite; }
+@media (max-width: 640px) { .pb-band { padding: 96px 0 48px; } .pb-band .mol { display: none; } }
+
+/* sahifa tanasi bandga biroz chiqib turadi */
+.pb-body { position: relative; z-index: 2; margin-top: -28px; padding-bottom: 72px; }
+
+/* ───── Bo'lim sarlavhasi ───── */
+.pb-sec { padding: 88px 0; position: relative; }
+.pb-sec.alt { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+@media (max-width: 640px) { .pb-sec { padding: 60px 0; } }
+.pb-sh { max-width: 720px; margin-bottom: 40px; }
+.pb-sh.c { margin-left: auto; margin-right: auto; text-align: center; }
+.pb-kick { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--teal-600); margin-bottom: 12px; }
+.pb-kick::before { content: ''; width: 22px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--brand-500), var(--teal-500)); }
+.pb-sh h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: 800; line-height: 1.15; letter-spacing: -.025em; }
+.pb-sh p { margin-top: 12px; font-size: 16px; color: var(--text-2); line-height: 1.65; }
+.pb-grad { background: linear-gradient(100deg, var(--brand-500), var(--teal-500)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* ───── Footer ───── */
+.pb-foot { background: #061f33; color: #b8cde0; padding: 64px 0 28px; position: relative; overflow: hidden; }
+.pb-foot::before { content: ''; position: absolute; inset: 0; background: radial-gradient(600px 260px at 90% 0%, rgba(15,163,163,.22), transparent 60%), radial-gradient(500px 240px at 0% 100%, rgba(17,112,168,.25), transparent 60%); pointer-events: none; }
+.pb-foot .pb-wrap { position: relative; }
+.pb-foot-g { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 32px; }
+@media (max-width: 960px) { .pb-foot-g { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .pb-foot-g { grid-template-columns: 1fr; } }
+.pb-foot h4 { color: #fff; font-size: 14px; margin-bottom: 14px; }
+.pb-foot a { color: #b8cde0; display: block; padding: 4px 0; font-size: 13.5px; }
+.pb-foot a:hover { color: #fff; }
+.pb-foot .li2 { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; padding: 4px 0; }
+.pb-foot .li2 svg { width: 16px; height: 16px; flex: none; margin-top: 3px; color: var(--teal-400); }
+.pb-foot-b { margin-top: 44px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 12.5px; color: #8fa9c0; }
+.pb-demo { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 99px; background: rgba(232,163,61,.14); color: #f5c77e; border: 1px solid rgba(232,163,61,.3); font-weight: 600; }
+
+/* ───── Umumiy elementlar ───── */
+.pb-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; box-shadow: var(--sh-2); padding: 22px; min-width: 0; }
+.pb-lift { transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .3s; }
+.pb-lift:hover { transform: translateY(-6px); box-shadow: var(--sh-3); border-color: var(--border-strong); }
+.pb-note { display: flex; gap: 10px; align-items: flex-start; font-size: 12.5px; color: var(--text-3); line-height: 1.5; }
+.pb-note svg { width: 16px; height: 16px; flex: none; margin-top: 1px; color: var(--teal-600); }
+.pb-calc { margin-top: 10px; border-top: 1px dashed var(--border); padding-top: 8px; font-size: 12px; color: var(--text-3); }
+.pb-calc summary { cursor: pointer; font-weight: 600; color: var(--primary-text); list-style: none; display: inline-flex; align-items: center; gap: 6px; }
+.pb-calc summary::-webkit-details-marker { display: none; }
+.pb-calc[open] summary { margin-bottom: 6px; }
+.pb-calc dl { display: grid; grid-template-columns: 96px 1fr; gap: 3px 10px; margin: 0; }
+.pb-calc dt { color: var(--text-3); } .pb-calc dd { margin: 0; color: var(--text-2); }
+.pb-filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.pb-filters .inp { width: auto; min-width: 150px; height: 40px; min-height: 40px; font-size: 13px; }
+.pb-search { position: relative; flex: 1 1 260px; min-width: 0; }
+.pb-search input { width: 100%; height: 44px; border-radius: 12px; border: 1px solid var(--border-strong); background: var(--surface); padding: 0 14px 0 42px; color: var(--text); font-size: 14px; transition: border-color .2s, box-shadow .2s; }
+.pb-search input:focus { outline: none; border-color: var(--primary); box-shadow: var(--ring); }
+.pb-search svg { position: absolute; left: 14px; top: 13px; width: 18px; height: 18px; color: var(--text-3); }
+@media (max-width: 560px) { .pb-filters .inp { flex: 1 1 calc(50% - 10px); min-width: 0; } }
